@@ -35,7 +35,7 @@ CRUD Methods for consuming RESTful API
     );
   }
   // HttpClient API post() method => Create User
-  createEmployee(user): Observable<User> {
+  createUser(user): Observable<User> {
     return this.http
       .post<User>(
         this.apiURL + "/users",

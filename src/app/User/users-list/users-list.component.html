@@ -1,3 +1,40 @@
-<p>
-  users-list works!
-</p>
+<div class="container custom-container-2">
+  <!-- Show it when there is no User -->
+  <div class="no-data text-center" *ngIf="User.length == 0">
+    <p>There is no User added yet!</p>
+    <button class="btn btn-outline-primary" routerLink="/create-user">
+      Add User
+    </button>
+  </div>
+  <!-- Users list table, it hides when there is no User -->
+  <div *ngIf="User.length !== 0">
+    <h3 class="mb-3 text-center">Users List</h3>
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of Users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>
+              <span class="edit" routerLink="/user-edit/{{ user.id }}"
+                >Edit</span
+              >
+              <span class="delete" (click)="deleteUser(user.id)">Delete</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
