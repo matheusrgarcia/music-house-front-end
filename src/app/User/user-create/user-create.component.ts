@@ -13,7 +13,7 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {
     console.log("Enters here");
   }
-  addEmployee(dataUser) {
+  addUser(dataUser) {
     this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
       this.router.navigate(["/users-list"]);
     });
