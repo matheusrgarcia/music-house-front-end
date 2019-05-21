@@ -1,18 +1,27 @@
-## Escopo Rede Social
+# MusicHouseFront
 
-- Desenvolver uma rede social utilizando PHP, HTML, CSS e Javascript contendo minimamente as seguintes funcionalidades:
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
-- Se cadastrar na rede social (ter foto de perfil)
-- Fazer login e logoff (só acessar as páginas internas estando logado)
-- Buscar usuário (informar se é amigo, se não é amigo ou se tem solicitação pendente)
-- Solicitar amizade (para quem não é amigo)
-- Cancelar amizade (para quem é amigo ou tem solicitação pendente)
-- Listar solicitações de amizade podendo aceitar ou cancelar
-- Fazer postagem contendo necessariamente texto e imagem
-- Poder apagar suas próprias postagens
-- Mostrar timeline principal contento as postagens dos amigos e as próprias postagens em ordem cronológica decrescente\* Para cada post exibir: o nome/foto do autor o data da postagem o quantidade de curtidas o quantidade de comentários o texto da postagem o imagem da postagem
-- Ao clicar em algum usuário (amigo ou não) mostrar sua timeline, contendo apenas as postagens deste usuário
-- Poder curtir as postagens (apenas uma vez)
-- Poder comentar nas postagens (se for numa página separada, exibir os dados da postagem)
-- As imagens (de perfil e das postagens) não precisam ser cadastradas através de um upload, pode utilizar imagens já publicadas na internet através de URLs
-- A rede social deverá utilizar uma temática. Ex.: rede social de animais para adoção
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
