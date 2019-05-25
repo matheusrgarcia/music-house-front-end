@@ -14,10 +14,11 @@ import { HttpClientModule } from "@angular/common/http";
 
 // Forms Module
 import { FormsModule } from "@angular/forms";
-import { UserLoginComponent } from './User/user-login/user-login.component';
+import { UserLoginComponent } from "./User/user-login/user-login.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "create-user" },
+  { path: "", pathMatch: "full", redirectTo: "user-login" },
+  { path: "user-login", component: UserLoginComponent },
   { path: "create-user", component: UserCreateComponent },
   { path: "user-details", component: UserDetailsComponent },
   { path: "update-user", component: UserUpdateComponent },

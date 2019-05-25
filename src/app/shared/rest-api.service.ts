@@ -20,6 +20,7 @@ CRUD Methods for consuming RESTful API
       "Content-Type": "application/json"
     })
   };
+
   // HttpClient API get() method => Fetch Users list
   getUsers(): Observable<User> {
     return this.http.get<User>(this.apiURL + "/users").pipe(
@@ -27,6 +28,7 @@ CRUD Methods for consuming RESTful API
       catchError(this.handleError)
     );
   }
+
   // HttpClient API get() method => Fetch User
   getUser(id): Observable<User> {
     return this.http.get<User>(this.apiURL + "/users/" + id).pipe(
@@ -34,6 +36,7 @@ CRUD Methods for consuming RESTful API
       catchError(this.handleError)
     );
   }
+
   // HttpClient API post() method => Create User
   createUser(user): Observable<User> {
     return this.http
@@ -47,6 +50,7 @@ CRUD Methods for consuming RESTful API
         catchError(this.handleError)
       );
   }
+
   // HttpClient API put() method => Update User
   updateUser(id, user): Observable<User> {
     return this.http
@@ -60,6 +64,7 @@ CRUD Methods for consuming RESTful API
         catchError(this.handleError)
       );
   }
+
   // HttpClient API delete() method => Delete User
   deleteUser(id) {
     return this.http
@@ -69,6 +74,7 @@ CRUD Methods for consuming RESTful API
         catchError(this.handleError)
       );
   }
+
   // Error handling
   handleError(error) {
     let errorMessage = "";

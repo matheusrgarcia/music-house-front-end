@@ -18,4 +18,9 @@ export class UserLoginComponent implements OnInit {
       this.router.navigate(["/users-list"]);
     });
   }
+  userLogin(dataUser) {
+    this.restApi.getUser(this.userDetails).subscribe((data: {}) => {
+      this.router.navigate(["/"]);
+    });
+  }
 }
