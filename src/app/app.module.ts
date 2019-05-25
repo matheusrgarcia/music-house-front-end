@@ -13,7 +13,7 @@ import { UsersListComponent } from "./user/users-list/users-list.component";
 import { HttpClientModule } from "@angular/common/http";
 
 // Forms Module
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UserLoginComponent } from "./User/user-login/user-login.component";
 
 const routes: Routes = [
@@ -38,7 +38,8 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule],
   providers: [],

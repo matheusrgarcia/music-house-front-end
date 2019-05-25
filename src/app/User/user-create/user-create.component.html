@@ -4,12 +4,14 @@
       <div class="card-heading"></div>
       <div class="card-body">
         <h2 class="title">Cadastre sua Banda</h2>
+
         <form method="POST">
           <!--Email para Login-->
           <div class="input-group">
             <input
               class="input--style-3"
               type="email"
+              required="required"
               placeholder="Email para Login"
               name="band_email"
               [(ngModel)]="userDetails.email"
@@ -21,6 +23,7 @@
             <input
               class="input--style-3"
               type="password"
+              required="required"
               placeholder="Senha"
               name="password"
               [(ngModel)]="userDetails.password"
