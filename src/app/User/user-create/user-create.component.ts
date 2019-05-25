@@ -8,7 +8,14 @@ import { Router } from "@angular/router";
   styleUrls: ["./user-create.component.css"]
 })
 export class UserCreateComponent implements OnInit {
-  @Input() userDetails = { name: "", email: "", password: "" };
+  @Input() userDetails = {
+    name: "",
+    email: "",
+    password: "",
+    foundationDate: "",
+    phone: "",
+    style: ""
+  };
   constructor(public restApi: RestApiService, public router: Router) {}
   ngOnInit() {
     console.log("Enters here");

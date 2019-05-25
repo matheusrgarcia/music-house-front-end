@@ -13,11 +13,7 @@ export class UserLoginComponent implements OnInit {
   ngOnInit() {
     console.log("Enters here");
   }
-  addUser(dataUser) {
-    this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
-      this.router.navigate(["/users-list"]);
-    });
-  }
+
   userLogin(dataUser) {
     this.restApi.getUser(this.userDetails).subscribe((data: {}) => {
       this.router.navigate(["/"]);
