@@ -14,6 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 // Forms Module
 import { FormsModule } from "@angular/forms";
+import { UserLoginComponent } from './User/user-login/user-login.component';
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "create-user" },
@@ -29,7 +30,8 @@ const routes: Routes = [
     UserCreateComponent,
     UserDetailsComponent,
     UserUpdateComponent,
-    UsersListComponent
+    UsersListComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
