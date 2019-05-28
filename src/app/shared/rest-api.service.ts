@@ -51,6 +51,15 @@ CRUD Methods for consuming RESTful API
       );
   }
 
+  authTeste(user): Observable<User> {
+    return this.http
+      .post<User>(this.apiURL + "/auth", JSON.stringify(user), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
   // HttpClient API put() method => Update User
   updateUser(id, user): Observable<User> {
     return this.http

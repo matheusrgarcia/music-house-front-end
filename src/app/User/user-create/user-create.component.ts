@@ -42,13 +42,9 @@ export class UserCreateComponent implements OnInit {
     console.log("Enters here");
   }
 
-  addUser(dataUser) {
-    if (this.form.invalid) {
-      return;
-    } else {
-      this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
-        this.router.navigate(["/users-list"]);
-      });
-    }
+  createUser(dataUser) {
+    this.restApi.authTeste(this.userDetails).subscribe((data: {}) => {
+      this.router.navigate(["/users-list"]);
+    });
   }
 }
