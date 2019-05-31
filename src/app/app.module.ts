@@ -8,13 +8,13 @@ import { UserCreateComponent } from "./user/user-create/user-create.component";
 import { UserDetailsComponent } from "./user/user-details/user-details.component";
 import { UserUpdateComponent } from "./user/user-update/user-update.component";
 import { UsersListComponent } from "./user/users-list/users-list.component";
+import { UserLoginComponent } from "./user/user-login/user-login.component";
 
 // HttpClient module for RESTful API
 import { HttpClientModule } from "@angular/common/http";
 
 // Forms Module
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { UserLoginComponent } from "./User/user-login/user-login.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "user-login" },
@@ -35,8 +35,8 @@ const routes: Routes = [
     UserLoginComponent
   ],
   imports: [
-    BrowserModule,
     RouterModule.forRoot(routes),
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
