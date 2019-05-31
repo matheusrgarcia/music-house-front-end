@@ -9,7 +9,8 @@ import { retry, catchError } from "rxjs/operators";
 })
 export class RestApiService {
   // Define API
-  apiURL = "http://localhost:3000";
+  apiURL = "https://rede-social-web.herokuapp.com";
+
   constructor(private http: HttpClient) {}
   /*========================================
 CRUD Methods for consuming RESTful API

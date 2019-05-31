@@ -43,7 +43,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   createUser(dataUser) {
-    this.restApi.authTeste(this.userDetails).subscribe((data: {}) => {
+    this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
       this.router.navigate(["/users-list"]);
     });
   }
