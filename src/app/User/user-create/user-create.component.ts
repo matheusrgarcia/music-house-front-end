@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RestApiService } from "../../shared/rest-api.service";
 import { Router } from "@angular/router";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
@@ -31,12 +31,9 @@ export class UserCreateComponent implements OnInit {
     description: [""]
   });
 
-  ngOnInit() {
-    console.log("User Register Component");
-  }
+  ngOnInit() {}
 
   createUser() {
-    console.log(this.userDetails);
     this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
       this.router.navigate(["/user-login"]);
     });
