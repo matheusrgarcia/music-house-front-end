@@ -81,6 +81,31 @@ CRUD Methods for consuming RESTful API
     );
   }
 
+  getUserTimeline(): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http.get<User>(this.apiURL + "/me/timeline", { headers }).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  sendUserPost(post): Observable<User> {
+    console.log(post);
+    return this.http
+      .post<User>(
+        this.apiURL + "/me/posts" + post.id,
+        JSON.stringify(post),
+        this.httpOptions
+      )
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
   // HttpClient API post() method => Create User
   createUser(user): Observable<User> {
     console.log(user);

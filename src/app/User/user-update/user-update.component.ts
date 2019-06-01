@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./user-update.component.css"]
 })
 export class UserUpdateComponent implements OnInit {
-  id = this.actRoute.snapshot.params["id"];
   userData: any = {};
   constructor(
     public restApi: RestApiService,
@@ -23,10 +22,14 @@ export class UserUpdateComponent implements OnInit {
 
   // Update user data
   updateUser() {
-    if (window.confirm("Você tem certeza que deseja atualizar?")) {
-      this.restApi.updateUser(this.id, this.userData).subscribe(data => {
-        this.router.navigate(["/users-list"]);
-      });
+    if (
+      window.confirm("Você tem certeza que deseja atualizar suas informações?")
+    ) {
+      this.restApi
+        .updateUser(this.userData.id, this.userData)
+        .subscribe(data => {
+          this.router.navigate(["../main-page"]);
+        });
     }
   }
 }

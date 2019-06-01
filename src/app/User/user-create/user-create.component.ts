@@ -13,18 +13,8 @@ export class UserCreateComponent implements OnInit {
     name: "",
     email: "",
     password: "",
-    foundationDate: "",
-    phone: "",
-    style: ""
-  };
-
-  model: any = {
-    name: "",
-    email: "",
-    password: "",
-    foundationDate: "",
-    phone: "",
-    style: ""
+    profile_img_url: "",
+    description: ""
   };
 
   form: FormGroup;
