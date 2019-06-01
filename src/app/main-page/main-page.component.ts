@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RestApiService } from "../shared/rest-api.service";
-import { first } from "rxjs/operators";
 import { User } from "../shared/user";
-import { UserService } from "../shared/user.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-main-page",
@@ -14,15 +13,32 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     public restApi: RestApiService,
-    private userService: UserService
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
+  /* ngOnInit() {
+    this.router.routerState.root.queryParams.subscribe(params => {
+      console.log("Parametros no Main: ", params);
+      console.log("Parametros no Main: ", params.lazyUpdate);
+      this.getUser(params);
+      console.log("User: ", this.user);
+    });
+  }
+  */
+
   ngOnInit() {
-    this.getUser(this.user);
-    console.log("User: ", this.user);
+    console.log(this.GetHttpHeaders());
   }
 
-  getUser(user) {
-    this.restApi.getUser(user);
+  async GetHttpHeaders() {
+    await this.router.routerState.root.queryParams.subscribe(params => {
+      console.log("params: ", params);
+      return params;
+    });
+  }
+
+  getUser() {
+    return this.restApi.getUser({ headers: this.GetHttpHeaders() });
   }
 }

@@ -48,15 +48,13 @@ export class UserLoginComponent implements OnInit {
 
   userLogin() {
     this.restApi.auth(this.userDetails).subscribe(dados => {
-      var headers_object = new HttpHeaders();
-      headers_object.append("Content-Type", "application/json");
-      headers_object.append("X-token", "Basic" + dados);
+      let headers = new HttpHeaders().append("X-token", JSON.stringify(dados));
 
-      const httpOptions = {
-        headers: headers_object
-      };
+      headers = headers.set("Content-Type", "application/json; charset=utf-8");
 
-      this.router.navigate(["main-page"]);
+      console.log("Dados:", dados, "Headers: ", headers);
+
+      this.router.navigate(["main-page"], { queryParams: headers });
     });
   }
 }

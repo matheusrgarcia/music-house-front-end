@@ -90,7 +90,7 @@ CRUD Methods for consuming RESTful API
       );
   }
 
-  // User Token
+  // User Token auth
   auth(user): Observable<User> {
     return this.http
       .post<User>(this.apiURL + "/auth", JSON.stringify(user), this.httpOptions)
