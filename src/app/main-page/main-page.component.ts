@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class MainPageComponent implements OnInit {
   user: User;
+  retorno: any;
+  usuario: any;
 
   constructor(
     public restApi: RestApiService,
@@ -17,28 +19,9 @@ export class MainPageComponent implements OnInit {
     private router: Router
   ) {}
 
-  /* ngOnInit() {
-    this.router.routerState.root.queryParams.subscribe(params => {
-      console.log("Parametros no Main: ", params);
-      console.log("Parametros no Main: ", params.lazyUpdate);
-      this.getUser(params);
-      console.log("User: ", this.user);
-    });
-  }
-  */
-
   ngOnInit() {
-    console.log(this.GetHttpHeaders());
-  }
-
-  async GetHttpHeaders() {
-    await this.router.routerState.root.queryParams.subscribe(params => {
-      console.log("params: ", params);
-      return params;
+    this.restApi.getUser().subscribe(user => {
+      this.usuario = user;
     });
-  }
-
-  getUser() {
-    return this.restApi.getUser({ headers: this.GetHttpHeaders() });
   }
 }

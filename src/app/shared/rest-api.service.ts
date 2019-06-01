@@ -11,10 +11,12 @@ import { map } from "rxjs/operators";
 export class RestApiService {
   // Define API
   apiURL = "https://rede-social-web.herokuapp.com";
+  //apiURL = "https://red-shrimp-86.localtunnel.me";
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
+    console.log("Local: ", localStorage.getItem("currentUser"));
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem("currentUser"))
     );
@@ -68,8 +70,12 @@ CRUD Methods for consuming RESTful API
   }
 
   // HttpClient API get() method => Get user by ID
-  getUser(user): Observable<User> {
-    return this.http.get<User>(this.apiURL + "/me" + user.id).pipe(
+  getUser(): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http.get<User>(this.apiURL + "/me", { headers }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -97,7 +103,7 @@ CRUD Methods for consuming RESTful API
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
-          if (user && user.token) {
+          if (user && user["auth-jwt"]) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem("currentUser", JSON.stringify(user));
             this.currentUserSubject.next(user);

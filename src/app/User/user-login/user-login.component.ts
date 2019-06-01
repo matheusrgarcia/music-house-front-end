@@ -30,6 +30,8 @@ export class UserLoginComponent implements OnInit {
 
   form: FormGroup;
 
+  jsonData;
+
   constructor(
     public restApi: RestApiService,
     public router: Router,
@@ -48,13 +50,7 @@ export class UserLoginComponent implements OnInit {
 
   userLogin() {
     this.restApi.auth(this.userDetails).subscribe(dados => {
-      let headers = new HttpHeaders().append("X-token", JSON.stringify(dados));
-
-      headers = headers.set("Content-Type", "application/json; charset=utf-8");
-
-      console.log("Dados:", dados, "Headers: ", headers);
-
-      this.router.navigate(["main-page"], { queryParams: headers });
+      this.router.navigate(["main-page"]);
     });
   }
 }

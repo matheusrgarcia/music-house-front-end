@@ -35,7 +35,7 @@
             <input
               class="input--style-3"
               type="text"
-              placeholder="Nome da Banda"
+              placeholder="Nome"
               name="name"
               [(ngModel)]="userDetails.name"
               autocomplete="off"
@@ -47,9 +47,9 @@
             <input
               class="input--style-3"
               type="text"
-              placeholder="Estilo da Banda"
+              placeholder="Informações extras"
               name="style"
-              [(ngModel)]="userDetails.style"
+              [(ngModel)]="userDetails.description"
               autocomplete="off"
             />
           </div>
@@ -58,9 +58,9 @@
             <input
               class="input--style-3"
               type="text"
-              placeholder="Telefone para Contato"
-              name="phone"
-              [(ngModel)]="userDetails.phone"
+              placeholder="Link para foto de perfil"
+              name="profile_img_url"
+              [(ngModel)]="userDetails.profile_img_url"
               autocomplete="off"
             />
           </div>

@@ -38,8 +38,8 @@ export class UserCreateComponent implements OnInit {
       name: ["", Validators.required],
       email: ["", Validators.required],
       password: ["", Validators.required],
-      style: [""],
-      phone: [""]
+      profile_img_url: [""],
+      description: [""]
     });
   }
   ngOnInit() {
@@ -47,6 +47,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   createUser() {
+    console.log(this.userDetails);
     this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
       this.router.navigate(["/user-login"]);
     });

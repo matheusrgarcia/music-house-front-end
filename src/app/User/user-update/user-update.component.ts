@@ -16,7 +16,7 @@ export class UserUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.restApi.getUser(this.id).subscribe((data: {}) => {
+    this.restApi.getUser().subscribe((data: {}) => {
       this.userData = data;
     });
   }
