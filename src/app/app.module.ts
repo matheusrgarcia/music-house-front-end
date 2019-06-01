@@ -4,11 +4,11 @@ import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 
 // Components
-import { UserCreateComponent } from "./user/user-create/user-create.component";
-import { UserDetailsComponent } from "./user/user-details/user-details.component";
-import { UserUpdateComponent } from "./user/user-update/user-update.component";
-import { UsersListComponent } from "./user/users-list/users-list.component";
-import { UserLoginComponent } from "./user/user-login/user-login.component";
+import { UserCreateComponent } from "./User/user-create/user-create.component";
+import { UserDetailsComponent } from "./User/user-details/user-details.component";
+import { UserUpdateComponent } from "./User/user-update/user-update.component";
+import { UsersListComponent } from "./User/users-list/users-list.component";
+import { UserLoginComponent } from "./User/user-login/user-login.component";
 
 // HttpClient module for RESTful API
 import { HttpClientModule } from "@angular/common/http";
