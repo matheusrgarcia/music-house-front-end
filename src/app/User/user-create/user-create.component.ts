@@ -35,16 +35,20 @@ export class UserCreateComponent implements OnInit {
     private fbuilder: FormBuilder
   ) {
     this.form = this.fbuilder.group({
-      name: ["", Validators.required]
+      name: ["", Validators.required],
+      email: ["", Validators.required],
+      password: ["", Validators.required],
+      style: [""],
+      phone: [""]
     });
   }
   ngOnInit() {
-    console.log("Enters here");
+    console.log("User Register Component");
   }
 
-  createUser(dataUser) {
+  createUser() {
     this.restApi.createUser(this.userDetails).subscribe((data: {}) => {
-      this.router.navigate(["/users-list"]);
+      this.router.navigate(["/user-login"]);
     });
   }
 }

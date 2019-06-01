@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "../shared/User";
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, BehaviorSubject } from "rxjs";
 import { retry, catchError } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -10,8 +11,15 @@ import { retry, catchError } from "rxjs/operators";
 export class RestApiService {
   // Define API
   apiURL = "https://rede-social-web.herokuapp.com";
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem("currentUser"))
+    );
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
   /*========================================
 CRUD Methods for consuming RESTful API
 =========================================*/
@@ -30,9 +38,38 @@ CRUD Methods for consuming RESTful API
     );
   }
 
-  // HttpClient API get() method => Fetch User
-  getUser(id): Observable<User> {
-    return this.http.get<User>(this.apiURL + "/users/" + id).pipe(
+  // Current User
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+  // Login
+  login(user) {
+    return this.http
+      .post<User>(this.apiURL + "/auth", JSON.stringify(user))
+      .pipe(
+        map(user => {
+          // login successful if there's a jwt token in the response
+          if (user && user.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            this.currentUserSubject.next(user);
+          }
+          return user;
+        })
+      );
+  }
+
+  // Logout
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem("currentUser");
+    this.currentUserSubject.next(null);
+  }
+
+  // HttpClient API get() method => Get user by ID
+  getUser(user): Observable<User> {
+    return this.http.get<User>(this.apiURL + "/me" + user.id).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -40,9 +77,10 @@ CRUD Methods for consuming RESTful API
 
   // HttpClient API post() method => Create User
   createUser(user): Observable<User> {
+    console.log(user);
     return this.http
       .post<User>(
-        this.apiURL + "/users",
+        this.apiURL + "/users/" + user.id,
         JSON.stringify(user),
         this.httpOptions
       )
@@ -52,12 +90,20 @@ CRUD Methods for consuming RESTful API
       );
   }
 
-  authTeste(user): Observable<User> {
+  // User Token
+  auth(user): Observable<User> {
     return this.http
       .post<User>(this.apiURL + "/auth", JSON.stringify(user), this.httpOptions)
       .pipe(
-        retry(1),
-        catchError(this.handleError)
+        map(user => {
+          // login successful if there's a jwt token in the response
+          if (user && user.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            this.currentUserSubject.next(user);
+          }
+          return user;
+        })
       );
   }
 

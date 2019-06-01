@@ -5,7 +5,12 @@
         <img src="../../../assets/images/m-h-logo.png" alt="IMG" />
       </div>
 
-      <form class="login100-form validate-form">
+      <form
+        form
+        method="POST"
+        (ngSubmit)="userLogin(form.value)"
+        class="login100-form validate-form"
+      >
         <span class="login100-form-title">
           Login
         </span>
@@ -45,7 +50,7 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn" (click)="userLogin()">
+          <button class="login100-form-btn">
             Login
           </button>
         </div>

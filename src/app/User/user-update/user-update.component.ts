@@ -14,13 +14,15 @@ export class UserUpdateComponent implements OnInit {
     public actRoute: ActivatedRoute,
     public router: Router
   ) {}
+
   ngOnInit() {
     this.restApi.getUser(this.id).subscribe((data: {}) => {
       this.userData = data;
     });
   }
-  // Update employee data
-  updateEmployee() {
+
+  // Update user data
+  updateUser() {
     if (window.confirm("Você tem certeza que deseja atualizar?")) {
       this.restApi.updateUser(this.id, this.userData).subscribe(data => {
         this.router.navigate(["/users-list"]);

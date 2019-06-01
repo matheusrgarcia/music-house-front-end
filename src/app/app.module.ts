@@ -15,6 +15,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 // Forms Module
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MainPageComponent } from "./main-page/main-page.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "user-login" },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: "user-login/create-user", component: UserCreateComponent },
   { path: "user-details", component: UserDetailsComponent },
   { path: "update-user", component: UserUpdateComponent },
-  { path: "users-list", component: UsersListComponent }
+  { path: "users-list", component: UsersListComponent },
+  { path: "main-page", component: MainPageComponent }
 ];
 
 @NgModule({
@@ -32,7 +34,8 @@ const routes: Routes = [
     UserDetailsComponent,
     UserUpdateComponent,
     UsersListComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    MainPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -41,7 +44,14 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [RouterModule],
+  exports: [
+    RouterModule,
+    UserCreateComponent,
+    UserDetailsComponent,
+    UserUpdateComponent,
+    UsersListComponent,
+    UserLoginComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
