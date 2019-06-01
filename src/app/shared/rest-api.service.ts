@@ -16,7 +16,6 @@ export class RestApiService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    console.log("Local: ", localStorage.getItem("currentUser"));
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem("currentUser"))
     );

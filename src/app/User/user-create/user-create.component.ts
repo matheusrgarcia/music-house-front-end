@@ -9,7 +9,7 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
   styleUrls: ["./user-create.component.css"]
 })
 export class UserCreateComponent implements OnInit {
-  @Input() userDetails = {
+  userDetails = {
     name: "",
     email: "",
     password: "",
@@ -17,21 +17,20 @@ export class UserCreateComponent implements OnInit {
     description: ""
   };
 
-  form: FormGroup;
-
   constructor(
     public restApi: RestApiService,
     public router: Router,
     private fbuilder: FormBuilder
-  ) {
-    this.form = this.fbuilder.group({
-      name: ["", Validators.required],
-      email: ["", Validators.required],
-      password: ["", Validators.required],
-      profile_img_url: [""],
-      description: [""]
-    });
-  }
+  ) {}
+
+  form: FormGroup = this.fbuilder.group({
+    name: ["", Validators.required],
+    email: ["", Validators.required],
+    password: ["", Validators.required],
+    profile_img_url: [""],
+    description: [""]
+  });
+
   ngOnInit() {
     console.log("User Register Component");
   }

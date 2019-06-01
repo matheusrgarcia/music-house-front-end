@@ -51,13 +51,15 @@ export class MainPageComponent implements OnInit {
     });
   }
 
+  // Logout
   userLogout() {
-    console.log("Enters here?");
     if (window.confirm("Você tem certeza que fazer Logout?")) {
       this.restApi.logout();
+      this.router.navigate(["../user-login"]);
     }
   }
 
+  // Send Post
   sendPost() {
     this.restApi.sendUserPost(this.postDetails).subscribe(post => {
       console.log(post);

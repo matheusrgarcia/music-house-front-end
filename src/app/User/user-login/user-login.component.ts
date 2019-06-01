@@ -10,7 +10,7 @@ import { HttpHeaders } from "@angular/common/http";
   styleUrls: ["./user-login.component.css"]
 })
 export class UserLoginComponent implements OnInit {
-  @Input() userDetails = {
+  userDetails = {
     name: "",
     email: "",
     password: "",
@@ -28,23 +28,19 @@ export class UserLoginComponent implements OnInit {
     style: ""
   };
 
-  form: FormGroup;
-
-  jsonData;
-
   constructor(
     public restApi: RestApiService,
     public router: Router,
     private fbuilder: FormBuilder
-  ) {
-    this.form = this.fbuilder.group({
-      name: ["", Validators.required],
-      email: ["", Validators.required],
-      password: ["", Validators.required],
-      style: [""],
-      phone: [""]
-    });
-  }
+  ) {}
+
+  form: FormGroup = this.fbuilder.group({
+    name: ["", Validators.required],
+    email: ["", Validators.required],
+    password: ["", Validators.required],
+    style: [""],
+    phone: [""]
+  });
 
   ngOnInit() {}
 
