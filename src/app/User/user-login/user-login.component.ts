@@ -42,7 +42,9 @@ export class UserLoginComponent implements OnInit {
     phone: [""]
   });
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.restApi.logout();
+  }
 
   userLogin() {
     this.restApi.auth(this.userDetails).subscribe(dados => {
