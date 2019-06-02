@@ -1,0 +1,17 @@
+.profilePicture {
+  width: 180px;
+  height: 180px;
+}
+
+.post {
+  width: 300px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
+}

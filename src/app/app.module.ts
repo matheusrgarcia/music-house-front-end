@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MainPageComponent } from "./main-page/main-page.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "user-login" },
+  { path: "", pathMatch: "full", redirectTo: "main-page" },
   { path: "user-login", component: UserLoginComponent },
   { path: "user-login/create-user", component: UserCreateComponent },
   { path: "user-details", component: UserDetailsComponent },

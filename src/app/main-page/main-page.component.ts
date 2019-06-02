@@ -44,13 +44,6 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  getTimeline() {
-    this.restApi.getUserTimeline().subscribe(posts => {
-      this.posts = posts;
-      console.log(posts);
-    });
-  }
-
   // Logout
   userLogout() {
     if (window.confirm("Você tem certeza que fazer Logout?")) {
@@ -59,10 +52,27 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  getTimeline() {
+    this.restApi.getUserTimeline().subscribe(posts => {
+      this.posts = posts;
+      console.log(posts);
+    });
+  }
+
   // Send Post
   sendPost() {
     this.restApi.sendUserPost(this.postDetails).subscribe(post => {
       console.log(post);
+    });
+  }
+
+  name: string;
+  searched: any;
+
+  onSearch() {
+    let name = this.name;
+    this.searched = this.restApi.getFriend(name).subscribe(results => {
+      this.router.navigate(["../users-list"], { queryParams: { name: name } });
     });
   }
 }

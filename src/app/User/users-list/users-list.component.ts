@@ -1,29 +1,46 @@
 import { Component, OnInit } from "@angular/core";
 import { RestApiService } from "../../shared/rest-api.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: "app-users-list",
+  selector: "users-list",
   templateUrl: "./users-list.component.html",
   styleUrls: ["./users-list.component.css"]
 })
 export class UsersListComponent implements OnInit {
-  User: any = [];
-  constructor(public restApi: RestApiService) {}
+  userNames: any;
+  usuario: any;
+  Users: any;
+
+  constructor(
+    public restApi: RestApiService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
   ngOnInit() {
-    this.loadUsers();
-  }
-  // Get employees list
-  loadUsers() {
-    return this.restApi.getUsers().subscribe((data: {}) => {
-      this.User = data;
+    this.loadSearchedList();
+    this.restApi.getUser().subscribe(user => {
+      this.usuario = user;
     });
   }
-  // Delete employee
-  deleteUser(id) {
-    if (window.confirm("Você tem certeza que deseja deletar este usuário?")) {
-      this.restApi.deleteUser(id).subscribe(data => {
-        this.loadUsers();
-      });
+
+  // Logout
+  userLogout() {
+    if (window.confirm("Você tem certeza que fazer Logout?")) {
+      this.restApi.logout();
+      this.router.navigate(["../user-login"]);
     }
+  }
+
+  // Get Searched list
+  loadSearchedList() {
+    this.route.queryParams.subscribe(params => {
+      this.userNames = params["name"];
+    });
+
+    this.restApi.getFriend(this.userNames).subscribe(results => {
+      this.Users = results;
+    });
   }
 }

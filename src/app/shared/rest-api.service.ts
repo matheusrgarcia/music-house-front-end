@@ -80,6 +80,19 @@ CRUD Methods for consuming RESTful API
     );
   }
 
+  getFriend(name): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http
+      .get<User>(this.apiURL + "/search/user?name=" + name, { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
   getUserTimeline(): Observable<User> {
     const authToken = JSON.parse(localStorage.getItem("currentUser"));
     const headers = new HttpHeaders({
@@ -107,7 +120,6 @@ CRUD Methods for consuming RESTful API
 
   // HttpClient API post() method => Create User
   createUser(user): Observable<User> {
-    console.log(user);
     return this.http
       .post<User>(
         this.apiURL + "/users/" + user.id,

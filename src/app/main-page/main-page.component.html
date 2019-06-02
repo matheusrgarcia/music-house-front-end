@@ -35,29 +35,29 @@
         ></a>
         <button
           (click)="userLogout()"
-          class="w3-button w3-hide-small w3-padding-large w3-hover-white"
+          class="w3-button w3-hide-small w3-padding-large w3-hover-red"
           style="float:right"
           title="Fazer Logout"
         >
           <i class="fa fa-times"></i>
         </button>
 
-        <div class="w3-dropdown-hover w3-hide-small">
-          <button class="w3-button w3-padding-large" title="Notifications">
-            <i class="fa fa-bell"></i
-            ><span class="w3-badge w3-right w3-small w3-green">3</span>
-          </button>
-          <div
-            class="w3-dropdown-content w3-card-4 w3-bar-block"
-            style="width:300px"
+        <form (submit)="onSearch()">
+          <input
+            type="text"
+            name="name"
+            placeholder="Pesquisar"
+            [(ngModel)]="name"
+            style="margin-top: 0.5%; margin-left: 20px; width:600px"
+          />
+          <button
+            class="w3-button w3-hide-small
+            w3-padding-large w3-hover-blue"
+            title="Pesquisar"
           >
-            <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-            <a href="#" class="w3-bar-item w3-button"
-              >John Doe posted on your wall</a
-            >
-            <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
-          </div>
-        </div>
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
       </div>
     </div>
 
@@ -275,7 +275,9 @@
           </div>
           <ng-container #elseBlock
             ><div class="w3-container w3-card w3-white w3-round w3-margin">
-              <p>Não há nenhum Post ou ocorreu algum erro :(</p>
+              <p style="margin-top: 2%">
+                Não há nenhum Post ou ocorreu algum erro :(
+              </p>
             </div>
           </ng-container>
 
