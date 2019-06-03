@@ -11,11 +11,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class MainPageComponent implements OnInit {
   @Input() postDetails = {
-    name: "",
-    email: "",
-    password: "",
-    profile_img_url: "",
-    description: ""
+    content_img: "",
+    content_text: ""
   };
 
   user: User;
@@ -25,6 +22,8 @@ export class MainPageComponent implements OnInit {
   posts: any;
 
   form: FormGroup;
+
+  requests: any;
 
   constructor(
     public restApi: RestApiService,
@@ -41,6 +40,9 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.restApi.getUser().subscribe(user => {
       this.usuario = user;
+    });
+    this.restApi.getFriendRequests().subscribe(friendRequests => {
+      this.requests = friendRequests;
     });
   }
 
@@ -61,8 +63,10 @@ export class MainPageComponent implements OnInit {
 
   // Send Post
   sendPost() {
-    this.restApi.sendUserPost(this.postDetails).subscribe(post => {
-      console.log(post);
+    this.restApi.getUser().subscribe(user => {
+      this.restApi.sendUserPost(this.postDetails).subscribe(post => {
+        console.log(post);
+      });
     });
   }
 

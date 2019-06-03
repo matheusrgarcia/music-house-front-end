@@ -12,6 +12,8 @@ export class UsersListComponent implements OnInit {
   usuario: any;
   Users: any;
 
+  userId;
+
   constructor(
     public restApi: RestApiService,
     private route: ActivatedRoute,
@@ -38,9 +40,14 @@ export class UsersListComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.userNames = params["name"];
     });
-
     this.restApi.getFriend(this.userNames).subscribe(results => {
       this.Users = results;
+    });
+  }
+
+  inviteFriend(userId) {
+    this.restApi.friendInvite(userId).subscribe(answer => {
+      console.log(answer);
     });
   }
 }

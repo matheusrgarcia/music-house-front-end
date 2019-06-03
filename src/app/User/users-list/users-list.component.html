@@ -225,6 +225,14 @@
                                   <h4>
                                     Informações extras: {{ user.description }}
                                   </h4>
+                                  <form (submit)="inviteFriend(user.id)">
+                                    <button
+                                      class="w3-button w3-block w3-green w3-section"
+                                      title="Adicionar amigo"
+                                    >
+                                      <i class="fa fa-check"></i>
+                                    </button>
+                                  </form>
                                 </div>
                               </div>
                             </div>
