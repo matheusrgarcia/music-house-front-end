@@ -14,8 +14,19 @@
               required="required"
               placeholder="Email para Login"
               name="band_email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
               [(ngModel)]="userDetails.email"
+              ngModel
+              #emailref="ngModel"
             />
+          </div>
+          <div
+            *ngIf="emailref.errors && (emailref.touched || emailref.dirty)"
+            class="aler alert-danger"
+          >
+            <div [hidden]="!emailref.errors?.pattern">
+              Email inválido!
+            </div>
           </div>
 
           <!--Senha para Login-->
@@ -66,9 +77,11 @@
           </div>
           <div>
             <div class="p-t-10 row">
-              <button class="btn btn--pill btn--purple" style="margin:0 auto">
-                Cadastrar
-              </button>
+              <div [hidden]="emailref.errors?.pattern" style="margin:0 auto">
+                <button class="btn btn--pill btn--purple" style="margin:0 auto">
+                  Cadastrar
+                </button>
+              </div>
             </div>
             <div class="p-t-10 row" style="margin:0 auto">
               <button class="btn btn--pill btn--purple" style="margin:0 auto">
