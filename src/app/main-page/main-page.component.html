@@ -106,14 +106,15 @@
                 <div class="w3-container w3-padding">
                   <h6 class="w3-opacity">Compartilhe!!!</h6>
                   <form method="POST" (ngSubmit)="sendPost(form.value)">
-                    <input
+                    <textarea
                       type="text"
                       class="w3-border post"
                       contenteditable="true"
                       name="content_text"
                       [(ngModel)]="postDetails.content_text"
                       placeholder="Que som você está curtindo hoje?"
-                    />
+                    ></textarea>
+
                     <br />
                     <input
                       type="text"
