@@ -106,8 +106,12 @@ CRUD Methods for consuming RESTful API
 
   // Friend Request
   friendInvite(userId) {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
     return this.http
-      .get<User>(this.apiURL + "/users/" + userId + "/invite", this.httpOptions)
+      .get<User>(this.apiURL + "/users/" + userId + "/invite", { headers })
       .pipe(
         retry(1),
         catchError(this.handleError)
