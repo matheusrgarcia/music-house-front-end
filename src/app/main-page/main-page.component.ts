@@ -19,6 +19,7 @@ export class MainPageComponent implements OnInit {
   usuario: any;
 
   post: any;
+  postId: any;
   posts: any;
 
   form: FormGroup;
@@ -46,6 +47,10 @@ export class MainPageComponent implements OnInit {
       this.requests = friendRequests;
       console.log(this.requests);
     });
+    this.restApi.getUserTimeline().subscribe(posts => {
+      this.posts = posts;
+      console.log(posts);
+    });
   }
 
   // --------------------- FRIENDS METHODS ------------------------------
@@ -56,6 +61,14 @@ export class MainPageComponent implements OnInit {
       alert("Você aceitou o convite deste amigo :)");
       location.reload();
     });
+  }
+
+  like(postId){
+    console.log(postId)
+    this.restApi.like(postId).subscribe(()=>{
+      location.reload();
+    });
+    //location.reload();
   }
 
   //Deny Friendship
@@ -83,8 +96,8 @@ export class MainPageComponent implements OnInit {
 
   // Send Post
   sendPost() {
+    console.log(this.postDetails);
     this.restApi.sendUserPost(this.postDetails).subscribe(post => {
-      console.log(this.postDetails);
     });
   }
 

@@ -148,19 +148,22 @@
                 <br />
                 <hr class="w3-clear" />
                 <p>
-                  {{ post.content_text }}
+                  {{ post.content }}
                 </p>
                 <div class="w3-row-padding" style="margin:0 -16px">
                   <div class="w3-half">
                     <img
-                      src=" {{ post.content_text }}"
+                      src="{{ post.post_img }}"
                       style="width:100%"
                       alt="Post image"
                       class="w3-margin-bottom"
                     />
                   </div>
                 </div>
-                <button
+                <p>
+                  {{post.likes_count}}
+                </p>
+                <button (click)="like(post.post_id)"
                   type="button"
                   class="w3-button w3-theme-d1 w3-margin-bottom"
                 >
@@ -229,25 +232,7 @@
     </div>
     <br />
 
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d2" style="position: absolute; bottom: 0; width: 100%">
-      <p>
-        Created by
-        <a
-          href="https://github.com/MichelRibeiro1"
-          target="_blank"
-          style="text-decoration:none"
-          >Michel Ribeiro</a
-        >
-        &
-        <a
-          href="https://github.com/matheusribeirogarcia"
-          target="_blank"
-          style="text-decoration:none"
-          >Matheus Ribeiro</a
-        >
-      </p>
-    </footer>
+    
   </div>
 </div>
 

@@ -193,12 +193,13 @@ CRUD Methods for consuming RESTful API
   sendUserPost(post): Observable<User> {
     const authToken = JSON.parse(localStorage.getItem("currentUser"));
     const headers = new HttpHeaders({
-      "X-token": authToken["auth-jwt"]
+      "X-token": authToken["auth-jwt"],
+      "Content-Type": "application/json"
     });
     return this.http
       .post<User>(
         this.apiURL + "/me/posts",
-        JSON.stringify(post), { headers }
+        post, {headers}
       )
       .pipe(
         retry(1),
@@ -255,6 +256,23 @@ CRUD Methods for consuming RESTful API
   deleteUser(id) {
     return this.http
       .delete<User>(this.apiURL + "/users/" + id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  like(postId){
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"],
+      "Content-Type": "application/json"
+    });
+    console.log(postId);
+    return this.http
+      .post(
+        this.apiURL+"/posts/"+postId + "/like", {}, {headers}
+      )
       .pipe(
         retry(1),
         catchError(this.handleError)
