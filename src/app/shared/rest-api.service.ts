@@ -147,13 +147,27 @@ CRUD Methods for consuming RESTful API
   }
 
   // Reject Friend Request
-  rejectFriendRequest(senderId): Observable<User> {
+  rejectFriendRequest(invitationId): Observable<User> {
     const authToken = JSON.parse(localStorage.getItem("currentUser"));
     const headers = new HttpHeaders({
       "X-token": authToken["auth-jwt"]
     });
     return this.http
-      .get<User>(this.apiURL + "/users/" + senderId + "/invite/cancel", { headers })
+      .get<User>(this.apiURL + "/me/invitations/" + invitationId + "/reject", { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  // Cancel Friendship
+  cancelFriendship(friendId): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http
+      .get<User>(this.apiURL + "/me/friends/" + friendId + "/cancel", { headers })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -175,13 +189,16 @@ CRUD Methods for consuming RESTful API
   }
 
 
+  // Create Post
   sendUserPost(post): Observable<User> {
-    console.log(post);
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
     return this.http
       .post<User>(
-        this.apiURL + "/me/posts" + post.id,
-        JSON.stringify(post),
-        this.httpOptions
+        this.apiURL + "/me/posts",
+        JSON.stringify(post), { headers }
       )
       .pipe(
         retry(1),

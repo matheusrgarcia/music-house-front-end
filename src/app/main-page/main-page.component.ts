@@ -11,8 +11,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class MainPageComponent implements OnInit {
   @Input() postDetails = {
-    content_img: "",
-    content_text: ""
+    img: "",
+    text: ""
   };
 
   user: User;
@@ -33,8 +33,8 @@ export class MainPageComponent implements OnInit {
     private fbuilder: FormBuilder
   ) {
     this.form = this.fbuilder.group({
-      content_text: ["", Validators.required],
-      content_img: ["", Validators.required]
+      text: ["", Validators.required],
+      img: ["", Validators.required]
     });
   }
 
@@ -48,19 +48,19 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-   // --------------------- FRIENDS METHODS ------------------------------
+  // --------------------- FRIENDS METHODS ------------------------------
 
   // Accept Friendship
-  acceptFriendship(invitation_id){
-    this.restApi.acceptFriendRequest(invitation_id).subscribe(() =>{
+  acceptFriendship(invitation_id) {
+    this.restApi.acceptFriendRequest(invitation_id).subscribe(() => {
       alert("Você aceitou o convite deste amigo :)");
       location.reload();
     });
   }
 
   //Deny Friendship
-  denyFriendship(sender_id){
-    this.restApi.rejectFriendRequest(sender_id).subscribe(() =>{
+  denyFriendship(invitation_id) {
+    this.restApi.rejectFriendRequest(invitation_id).subscribe(() => {
       alert("Você Negou o convite deste amigo :(");
       location.reload();
     });
@@ -83,10 +83,8 @@ export class MainPageComponent implements OnInit {
 
   // Send Post
   sendPost() {
-    this.restApi.getUser().subscribe(user => {
-      this.restApi.sendUserPost(this.postDetails).subscribe(post => {
-        console.log(post);
-      });
+    this.restApi.sendUserPost(this.postDetails).subscribe(post => {
+      console.log(post);
     });
   }
 

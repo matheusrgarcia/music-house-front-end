@@ -111,7 +111,7 @@
                       class="w3-border post"
                       contenteditable="true"
                       name="content_text"
-                      [(ngModel)]="postDetails.content_text"
+                      [(ngModel)]="postDetails.text"
                       placeholder="Que som você está curtindo hoje?"
                     ></textarea>
 
@@ -119,11 +119,11 @@
                     <input
                       type="text"
                       name="content_img"
-                      [(ngModel)]="postDetails.content_img"
+                      [(ngModel)]="postDetails.img"
                       placeholder="Link para imagem"
                     />
                     <br />
-                    <button class="w3-button w3-theme">
+                    <button class="w3-button w3-theme" (click)="form.reset()">
                       <i class="fa fa-pencil"></i> Post
                     </button>
                   </form>
@@ -209,7 +209,7 @@
                     <button
                       class="w3-button w3-block w3-red w3-section"
                       title="Declinar Amizade"
-                      (click) = "denyFriendship(friendInfo.sender_id)"
+                      (click) = "denyFriendship(friendInfo.invitation_id)"
                     >
                       <i class="fa fa-remove"></i>
                     </button>

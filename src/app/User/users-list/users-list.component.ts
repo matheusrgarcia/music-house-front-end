@@ -58,13 +58,18 @@ export class UsersListComponent implements OnInit {
   }
 
   //Deny Friendship
-  denyFriendship(sender_id){
-    this.restApi.rejectFriendRequest(sender_id).subscribe(() =>{
+  denyFriendship(invitation_id){
+    this.restApi.rejectFriendRequest(invitation_id).subscribe(() =>{
       alert("Você Negou o convite deste amigo :(");
       location.reload();
     });
   }
 
+  cancelFriendship(){
+    
+  }
+
+  // Invite Friend
   inviteFriend(userId) {
     this.restApi.friendInvite(userId).subscribe(answer => {
       if(!answer){
