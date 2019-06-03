@@ -105,7 +105,7 @@
               <div class="w3-card w3-round w3-white">
                 <div class="w3-container w3-padding">
                   <h6 class="w3-opacity">Compartilhe!!!</h6>
-                  <form method="POST" (ngSubmit)="sendPost(form.value)">
+                  <form method="POST" (ngSubmit)="sendPost()">
                     <textarea
                       type="text"
                       class="w3-border post"
@@ -230,7 +230,7 @@
     <br />
 
     <!-- Footer -->
-    <footer class="w3-container w3-theme-d2" style="float:inline-end">
+    <footer class="w3-container w3-theme-d2" style="position: absolute; bottom: 0; width: 100%">
       <p>
         Created by
         <a
