@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 
@@ -16,6 +16,7 @@ import { HttpClientModule } from "@angular/common/http";
 // Forms Module
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MainPageComponent } from "./main-page/main-page.component";
+import { FriendsComponent } from './friends/friends.component';
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "user-login" },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: "user-details", component: UserDetailsComponent },
   { path: "update-user", component: UserUpdateComponent },
   { path: "users-list", component: UsersListComponent },
-  { path: "main-page", component: MainPageComponent }
+  { path: "main-page", component: MainPageComponent },
+  { path: "friends", component: FriendsComponent }
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ const routes: Routes = [
     UserUpdateComponent,
     UsersListComponent,
     UserLoginComponent,
-    MainPageComponent
+    MainPageComponent,
+    FriendsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -55,4 +58,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

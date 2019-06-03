@@ -11,6 +11,7 @@ export class UsersListComponent implements OnInit {
   userNames: any;
   usuario: any;
   Users: any;
+  requests: any;
 
   userId;
 
@@ -43,11 +44,34 @@ export class UsersListComponent implements OnInit {
     this.restApi.getFriend(this.userNames).subscribe(results => {
       this.Users = results;
     });
+    this.restApi.getFriendRequests().subscribe(friendRequests => {
+      this.requests = friendRequests;
+    });
+  }
+
+  // Accept Friendship
+  acceptFriendship(invitation_id){
+    this.restApi.acceptFriendRequest(invitation_id).subscribe(() =>{
+      alert("Você aceitou o convite deste amigo :)");
+      location.reload();
+    });
+  }
+
+  //Deny Friendship
+  denyFriendship(sender_id){
+    this.restApi.rejectFriendRequest(sender_id).subscribe(() =>{
+      alert("Você Negou o convite deste amigo :(");
+      location.reload();
+    });
   }
 
   inviteFriend(userId) {
     this.restApi.friendInvite(userId).subscribe(answer => {
-      console.log(answer);
+      if(!answer){
+        alert("Pedido de Amizade enviado!");
+      } else {
+        alert("Você já tem um pedido de Amizade Pendente!");
+      }
     });
   }
 }

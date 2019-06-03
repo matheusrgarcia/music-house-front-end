@@ -118,7 +118,7 @@ CRUD Methods for consuming RESTful API
       );
   }
 
-  //Get Friend Requests
+  // Get Friend Requests
   getFriendRequests(): Observable<User> {
     const authToken = JSON.parse(localStorage.getItem("currentUser"));
     const headers = new HttpHeaders({
@@ -131,6 +131,49 @@ CRUD Methods for consuming RESTful API
         catchError(this.handleError)
       );
   }
+
+  // Accept Friend Request
+  acceptFriendRequest(invitationId): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http
+      .get<User>(this.apiURL + "/me/invitations/" + invitationId + "/accept", { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  // Reject Friend Request
+  rejectFriendRequest(senderId): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http
+      .get<User>(this.apiURL + "/users/" + senderId + "/invite/cancel", { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  // List Friends
+  listFriends(): Observable<User> {
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http
+      .get<User>(this.apiURL + "/me/friends", { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
 
   sendUserPost(post): Observable<User> {
     console.log(post);

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-  selector: "app-main-page",
+  selector: "main-page",
   templateUrl: "./main-page.component.html",
   styleUrls: ["./main-page.component.css"]
 })
@@ -24,6 +24,7 @@ export class MainPageComponent implements OnInit {
   form: FormGroup;
 
   requests: any;
+  amigos: any;
 
   constructor(
     public restApi: RestApiService,
@@ -43,6 +44,25 @@ export class MainPageComponent implements OnInit {
     });
     this.restApi.getFriendRequests().subscribe(friendRequests => {
       this.requests = friendRequests;
+      console.log(this.requests);
+    });
+  }
+
+   // --------------------- FRIENDS METHODS ------------------------------
+
+  // Accept Friendship
+  acceptFriendship(invitation_id){
+    this.restApi.acceptFriendRequest(invitation_id).subscribe(() =>{
+      alert("Você aceitou o convite deste amigo :)");
+      location.reload();
+    });
+  }
+
+  //Deny Friendship
+  denyFriendship(sender_id){
+    this.restApi.rejectFriendRequest(sender_id).subscribe(() =>{
+      alert("Você Negou o convite deste amigo :(");
+      location.reload();
     });
   }
 

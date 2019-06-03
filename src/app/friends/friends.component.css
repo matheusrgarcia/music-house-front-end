@@ -1,0 +1,24 @@
+.profilePicture {
+    width: 60%;
+    height: 60%;
+  }
+  
+  .post {
+    width: 300px;
+  }
+
+  .friendsPhoto {
+    width: 20%;
+    height: 20%;
+    float: left;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  .full-height {
+    height: 100%;
+  }
+  

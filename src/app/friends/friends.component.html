@@ -2,9 +2,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
 <div *ngIf="!!usuario">
-  <div class="w3-theme-l5 full-height">
+  <div class="w3-theme-blue full-height">
     <!-- Navbar -->
     <div class="w3-top">
       <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
@@ -29,8 +28,6 @@
         </form>
       </div>
     </div>
-
-    <!-- Navbar on small screens -->
 
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
@@ -57,62 +54,38 @@
               <a [routerLink]="['../friends']">
                 <i class="fa fa-users fa-fw w3-margin-right w3-text-theme"></i>
                 Amigos
-            </a>
+              </a>
             </div>
           </div>
           <br />
-
-          <!-- End Left Column -->
         </div>
 
         <!-- Middle Column -->
-        <div class="w3-col m7">
-          <div class="w3-row-padding">
-            <div class="w3-col m12">
-              <div class="w3-card w3-round w3-white">
-                <div class="w3-container w3-padding">
-                  <div class="container custom-container-2">
-                    <!-- Show it when there is no User -->
-                    <ng-container *ngIf="!!User; else elseTemplate">
-                      <div class="no-data text-center">
-                        <p>Nenhum resultado!</p>
-                      </div>
-                    </ng-container>
 
-                    <ng-template #elseTemplate>
-                      <div>
-                        <h3 class="mb-3 text-center">Resultados</h3>
-                        <div class="col-md-12">
-                          <tr *ngFor="let user of Users">
-                            <div class="w3-container w3-card w3-white w3-round w3-margin">
-                              <div row>
-                                <img src="{{ user.profile_img_url }}" alt="Foto do Perfil"
-                                  class="w3-left w3-circle w3-margin-right col" style="width:200px" />
-                                <div class="col">
-                                  <br>
-                                  <h4>Nome: {{ user.name }}</h4>
-                                  <h4>
-                                    Informações extras: {{ user.description }}
-                                  </h4>
-                                  <form (submit)="inviteFriend(user.id)">
-                                    <button class="w3-button w3-block w3-green w3-section" title="Adicionar amigo">
-                                      <i class="fa fa-check"></i>
-                                    </button>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </tr>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </div>
-                </div>
-              </div>
+        <div class="w3-col m7">
+          <div *ngFor="let amigo of amigos">
+            <div class="w3-container">
+              <p class="w3-center">
+                <img src="{{ amigo.img_url }}" class="w3-circle friendsPhoto" alt="Foto de perfil" />
+              </p>
+              <br>
+              <p>
+                <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
+                {{ amigo.name }}
+              </p>
+              <p>
+                <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
+                {{ amigo.description }}
+              </p>
+              <button class="w3-button w3-red w3-section" title="Declinar Amizade"
+                (click)="endFriendship(amigo.id)">
+                <i class="fa fa-frown-o"></i>
+                Deixar de ser Amigo 
+              </button>
+              <hr>
             </div>
           </div>
-
-          <!-- End Middle Column -->
+          <!-- End Grid -->
         </div>
 
         <!-- Right Column -->
@@ -142,17 +115,15 @@
             </div>
           </div>
           <br />
+          <!-- End Right Column -->
         </div>
-        <!-- End Right Column -->
 
-        <!-- End Grid -->
+        <!-- End Page Container -->
       </div>
+      <br />
 
-      <!-- End Page Container -->
- 
-    </div>
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d2">
+      <!-- Footer -->
+      <footer class="w3-container w3-theme-d2" style="float:inline-end">
         <p>
           Created by
           <a href="https://github.com/MichelRibeiro1" target="_blank" style="text-decoration:none">Michel Ribeiro</a>
@@ -161,5 +132,32 @@
             Ribeiro</a>
         </p>
       </footer>
+    </div>
   </div>
-</div>
+
+  <script>
+    // Accordion
+    function myFunction(id) {
+      var x = document.getElementById(id);
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+      } else {
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = x.previousElementSibling.className.replace(
+          " w3-theme-d1",
+          ""
+        );
+      }
+    }
+
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
