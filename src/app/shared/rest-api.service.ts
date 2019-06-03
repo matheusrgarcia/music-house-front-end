@@ -39,6 +39,20 @@ CRUD Methods for consuming RESTful API
     );
   }
 
+  getFriendInfo(userId): Observable<User> {
+    console.log("User Info ID: ", userId);
+    const authToken = JSON.parse(localStorage.getItem("currentUser"));
+    const headers = new HttpHeaders({
+      "X-token": authToken["auth-jwt"]
+    });
+    return this.http
+      .get<User>(this.apiURL + "/users/" + userId + "/timeline" , { headers })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }   
+
   // Current User
   public get currentUserValue(): User {
     return this.currentUserSubject.value;

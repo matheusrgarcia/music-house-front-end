@@ -17,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { FriendsComponent } from './friends/friends.component';
+import { ExternalProfilesComponent } from './external-profiles/external-profiles.component';
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "user-login" },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: "update-user", component: UserUpdateComponent },
   { path: "users-list", component: UsersListComponent },
   { path: "main-page", component: MainPageComponent },
-  { path: "friends", component: FriendsComponent }
+  { path: "friends", component: FriendsComponent },
+  { path: "externalProfiles/:amigoId", component: ExternalProfilesComponent }
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const routes: Routes = [
     UsersListComponent,
     UserLoginComponent,
     MainPageComponent,
-    FriendsComponent
+    FriendsComponent,
+    ExternalProfilesComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
